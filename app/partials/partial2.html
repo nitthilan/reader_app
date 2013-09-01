@@ -1,5 +1,36 @@
-<p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <!--Sidebar content-->
+
+      Feed: <input ng-model="feedUrl">
+      <input type="submit" value="Add" ng-click="add(feedUrl)">
+      <p>{{addFeedMessage}}</p>
+      
+      Search: <input ng-model="query">
+      Sort by:
+      <select ng-model="orderProp">
+        <option value="name">Alphabetical</option>
+        <option value="age">Newest</option>
+      </select>
+      <input type="SUBMIT" value="Logout" ng-click="logout()">
+      
+      <ul class="subscriptions">
+        <li ng-repeat="subscription in subscriptions | filter:query | orderBy:orderProp" class="thumbnail">
+        <!-- a ng-href={{subscription.siteUrl}} ng-click=getArticle({{subscription._id}})>{{subscription.name}}</a -->
+        <a href ng-click=getArticle(subscription._id)>{{subscription.name}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="span10">
+      <!--Body content-->
+      <ul class="articles">
+        <li ng-repeat="article in articles | filter:query | orderBy:orderProp" class="thumbnail">
+        <h3>{{article.title}}</h3>
+        <p>{{article.description}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
