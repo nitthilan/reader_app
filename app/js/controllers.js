@@ -33,15 +33,22 @@ angular.module('myApp.controllers', []).
       serverAuth.logout();
       $location.path( "/view1" );
     };
+    
+    var Subscriptions = $resource('reader/subscriptions',{}, {
+      get: {method:'GET', isArray: true, headers: [{'Content-Type': 'application/json'}, {'Accept': 'application/json'}]}
+      });
+    $scope.subscriptions = Subscriptions.get();
 
     $scope.addFeedMessage = "Enter a rss feed";
     $scope.add = function(feed){
-      var Subscriptions = $resource('reader/subscriptions/xmlUrl',{}, {
+      var postSub = $resource('reader/subscriptions/xmlUrl',{}, {
         add: {method:'POST', headers: [{'Content-Type': 'application/json'}, {'Accept': 'application/json'}]}
       });
-      Subscriptions.add({},{url:feed}, function(response){
+      postSub.add({},{url:feed}, function(response){
         console.log(response);
         $scope.addFeedMessage = "Feed added successfully: "+JSON.stringify(response.name);
+        $scope.subscriptions = Subscriptions.get();
+        $scope.feedUrl = null;
       },
       function(err){
         console.log(err.data);
@@ -69,9 +76,5 @@ angular.module('myApp.controllers', []).
       }
     ];*/
 
-    var Subscriptions = $resource('reader/subscriptions',{}, {
-      get: {method:'GET', isArray: true, headers: [{'Content-Type': 'application/json'}, {'Accept': 'application/json'}]}
-      });
-    $scope.subscriptions = Subscriptions.get();
  
   }]);

@@ -9,7 +9,7 @@ angular.module('myApp.services', []).
   value('version', '0.1');
 
   angular.module('myApp.services').service('SessionService', function(){
-    var userIsAuthenticated = true;
+    var userIsAuthenticated = false;
 
     this.setUserAuthenticated = function(value){
       userIsAuthenticated = value;

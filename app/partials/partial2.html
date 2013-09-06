@@ -3,16 +3,22 @@
     <div class="span2">
       <!--Sidebar content-->
 
-      Feed: <input ng-model="feedUrl">
-      <input type="submit" value="Add" ng-click="add(feedUrl)">
-      <p>{{addFeedMessage}}</p>
+      <div class="span12">
+        <p>{{addFeedMessage}}</p>
+        <input ng-model="feedUrl">
+        <input type="submit" value="Add Feed" ng-click="add(feedUrl)">
+      </div>
       
-      Search: <input ng-model="query">
-      Sort by:
-      <select ng-model="orderProp">
-        <option value="name">Alphabetical</option>
-        <option value="age">Newest</option>
-      </select>
+      <div class="span12">
+        Search: <input ng-model="query">
+      </div>
+      <div class="span12">
+        Sort by:
+        <select ng-model="orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="age">Newest</option>
+        </select>
+      </div>
       <input type="SUBMIT" value="Logout" ng-click="logout()">
       
       <ul class="subscriptions">
@@ -27,7 +33,7 @@
       <ul class="articles">
         <li ng-repeat="article in articles | filter:query | orderBy:orderProp" class="thumbnail">
         <h3>{{article.title}}</h3>
-        <p>{{article.description}}</p>
+        {{article.description}}
         </li>
       </ul>
     </div>

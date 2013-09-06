@@ -1,12 +1,14 @@
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span10">
+    <div class="span5">
     </div>
     <div class="span2">
       Username: <input type="text" ng-model="username">
       Password: <input type="password" ng-model="password">
       <input type="submit" value="Login" ng-disabled="!username.length || !password.length" ng-click="login(username,password)">
       <p>{{loginMessage}}</p>
+    </div>
+    <div class="span5">
     </div>
   </div>
 </div>
