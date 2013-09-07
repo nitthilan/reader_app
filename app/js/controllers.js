@@ -47,6 +47,7 @@ angular.module('myApp.controllers', []).
       postSub.add({},{url:feed}, function(response){
         console.log(response);
         $scope.addFeedMessage = "Feed added successfully: "+JSON.stringify(response.name);
+        $scope.articles = response.articles;
         $scope.subscriptions = Subscriptions.get();
         $scope.feedUrl = null;
       },
