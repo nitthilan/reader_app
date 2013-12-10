@@ -1,4 +1,3 @@
-'use strict';
 
 window.routes =
 {
@@ -10,11 +9,11 @@ window.routes =
   "/view2": {
     templateUrl: 'partials/partial2.html', 
     controller: 'MyCtrl2', 
-    requireLogin: true
+    requireLogin: false
   }
 };
 // Declare app level module which depends on filters, and services
-var MyApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers', 'ngResource'])
+var MyApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers', 'ngResource', 'ngSanitize', 'ui.event'])
 
 MyApp
 .config(['$routeProvider', function($routeProvider) {

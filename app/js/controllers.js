@@ -50,6 +50,7 @@ angular.module('myApp.controllers', []).
         $scope.articles = response.articles;
         $scope.subscriptions = Subscriptions.get();
         $scope.feedUrl = null;
+        $scope.listedSubscription = response;
       },
       function(err){
         console.log(err.data);
@@ -58,12 +59,17 @@ angular.module('myApp.controllers', []).
       });
     }
 
-    $scope.getArticle = function(subscriptionId){
-      console.log(subscriptionId);
+    $scope.getArticle = function(subscription){
+      console.log(JSON.stringify(subscription));
       var Articles = $resource('reader/articles/:id',{}, {
         get: {method:'GET', isArray: true, headers: [{'Accept': 'application/json'}]}
       });
-      $scope.articles = Articles.get({id:subscriptionId});
+      $scope.articles = Articles.get({id:subscription._id});
+      $scope.listedSubscription = subscription;
+    }
+
+    $scope.scrollCallBack = function(){
+      console.log("Scroll starts");
     }
     
     /* $scope.subscriptions = [
